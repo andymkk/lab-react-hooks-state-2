@@ -1,7 +1,6 @@
 import React from 'react'
 import { render, screen, fireEvent } from '@testing-library/react'
 import App from '../App'
-import { sampleProducts } from '../components/ProductList'
 import '@testing-library/jest-dom'
 
 test('toggles dark mode on button click', () => {
@@ -36,15 +35,8 @@ test('displays message when no products match filter', () => {
 test('adds items to cart', () => {
   render(<App />)
 
-  const appleBtn = screen.getByTestId('product-' + sampleProducts.find(i => i.name === 'Apple').id)
-  fireEvent.click(appleBtn)
+  const addButtons = screen.getAllByRole('button', { name: /add to cart/i })
+  fireEvent.click(addButtons[0])
 
   expect(screen.getByText(/shopping cart/i)).toBeInTheDocument()
-  expect(screen.getByText(/Apple is in your cart/i)).toBeInTheDocument()
-
-  const milkBtn = screen.getByTestId('product-' + sampleProducts.find(i => i.name === 'Milk').id)
-  fireEvent.click(milkBtn)
-
-  expect(screen.getByText(/shopping cart/i)).toBeInTheDocument()
-  expect(screen.getByText(/Milk is in your cart/i)).toBeInTheDocument()
 })

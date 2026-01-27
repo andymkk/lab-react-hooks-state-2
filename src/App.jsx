@@ -2,35 +2,47 @@ import React, { useState } from 'react'
 import ProductList from './components/ProductList'
 import DarkModeToggle from './components/DarkModeToggle'
 import Cart from './components/Cart'
+import './App.css'
 
 const App = () => {
-  // TODO: Implement state for dark mode toggle
+  const [isDark, setIsDark] = useState(false)
+  const [cart, setCart] = useState([])
+  const [filter, setFilter] = useState('all')
 
-  // TODO: Implement state for cart management
+  const addItemToCart = (item) => {
+    if (!cart.find(cartItem => cartItem.id === item.id)) {
+      setCart([...cart, item])
+    }
+  }
 
-  // TODO: Implement state for category filtering
+  const switchTheme = () => {
+    setIsDark(!isDark)
+  }
+
+  const changeFilter = (e) => {
+    setFilter(e.target.value)
+  }
 
   return (
-    <div>
-      <h1>🛒 Shopping App</h1>
-      <p>
-        Welcome! Your task is to implement filtering, cart management, and dark
-        mode.
-      </p>
+    <div className={`container ${isDark ? 'dark' : ''}`}>
+      <div className="top-bar">
+        <h1>Shopping App</h1>
+        <DarkModeToggle isDark={isDark} switchTheme={switchTheme} />
+      </div>
+      
+      <div className="controls">
+        <label>Filter by Category: </label>
+        <select value={filter} onChange={changeFilter}>
+          <option value="all">All</option>
+          <option value="Fruits">Fruits</option>
+          <option value="Dairy">Dairy</option>
+        </select>
+      </div>
 
-      {/* TODO: Render DarkModeToggle and implement dark mode functionality */}
-
-      {/* TODO: Implement category filter dropdown */}
-      <label>Filter by Category: </label>
-      <select>
-        <option value="all">All</option>
-        <option value="Fruits">Fruits</option>
-        <option value="Dairy">Dairy</option>
-      </select>
-
-      <ProductList />
-
-      {/* TODO: Implement and render Cart component */}
+      <div className="main-area">
+        <ProductList filter={filter} addItemToCart={addItemToCart} />
+        <Cart cart={cart} />
+      </div>
     </div>
   )
 }

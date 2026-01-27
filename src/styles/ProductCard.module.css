@@ -1,5 +1,110 @@
-/* TODO (optional): Style the product card container */
+.product-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  background-color: white;
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+}
 
-/* TODO (optional): Add special styling for out-of-stock products */
+.dark-mode .product-card {
+  background-color: #1a1a1a;
+  border-color: #333;
+}
 
-/* TODO (optional): Style the add/remove button */
+.product-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.dark-mode .product-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.out-of-stock {
+  opacity: 0.7;
+}
+
+.out-of-stock:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.product-card h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: #213547;
+}
+
+.dark-mode .product-card h3 {
+  color: rgba(255, 255, 255, 0.87);
+}
+
+.product-price {
+  font-weight: bold;
+  font-size: 1.2em;
+  color: #646cff;
+  margin: 5px 0;
+}
+
+.dark-mode .product-price {
+  color: #747bff;
+}
+
+.product-category {
+  color: #666;
+  font-style: italic;
+  margin: 5px 0;
+}
+
+.dark-mode .product-category {
+  color: #aaa;
+}
+
+.product-status {
+  margin: 10px 0 15px 0;
+}
+
+.in-stock {
+  color: #28a745;
+}
+
+.out-of-stock-text {
+  color: #dc3545;
+}
+
+.add-to-cart-btn {
+  width: 100%;
+  padding: 10px;
+  background-color: #646cff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: 500;
+  transition: background-color 0.25s;
+  margin-top: auto;
+}
+
+.add-to-cart-btn:hover:not(:disabled) {
+  background-color: #535bf2;
+}
+
+.add-to-cart-btn:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+}
+
+.dark-mode .add-to-cart-btn {
+  background-color: #747bff;
+}
+
+.dark-mode .add-to-cart-btn:hover:not(:disabled) {
+  background-color: #646cff;
+}
+
+.dark-mode .add-to-cart-btn:disabled {
+  background-color: #495057;
+}
